@@ -6,12 +6,12 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 00:06:04 by manuel            #+#    #+#             */
-/*   Updated: 2021/01/30 02:28:01 by manuel           ###   ########.fr       */
+/*   Updated: 2021/01/30 04:37:59 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
-
+/*
 void	ft_foreach(t_app *self)
 {
 	while (*(self->paths))
@@ -19,44 +19,32 @@ void	ft_foreach(t_app *self)
 		ft_display_file(self, *(self->paths));
 		self->paths++;
 	}
+}*/
+
+void	hexdump(t_app *self, char *buf)
+{
+	(void)self;
+	ft_putstr(buf);
 }
 
-void	tail(t_app *self, char *buf)
+t_bool	is_c_flag(char *flag)
 {
-	while (*buf++)
-		;
-	if (!self->single)
-	{
-		ft_putstr("==> ");
-		ft_putstr(*(self->paths));
-		ft_putstr(" <==\n");
-	}
-	ft_putstr(buf - self->nbytes - 1);
-	if (*(self->paths + 1))
-		ft_putchar('\n');
+	return (*flag && *flag == '-' && *(++flag) == 'C');
 }
 
 int		main(int argc, char **argv)
 {
 	t_app	self;
 
-	if (argc == 1)
+	self = (t_app) { .name = *argv++, .error = false, .cflag = false };
+	if (argc > 1 && is_c_flag(*argv))
+		self.cflag = true;
+	if (argc == 1 || (argc == 2 && self.cflag))
 	{
-		ft_stdin();
+		ft_stdin(); // send self here to vary stdin
 		return (0);
 	}
-	self = (t_app) { .name = *argv++, .error = false, .single = false };
-	if (!valid(*(++argv)))
-		invalid_bytes(&self, *argv);
-	else if (argc == 3)
-		ft_stdin();
-	else
-	{
-		self.nbytes = ft_atoi(*argv++);
-		if (argc == 4)
-			self.single = true;
-		self.paths = argv;
-		ft_foreach(&self);
-	}
+	//self.paths = argv;
+	//ft_foreach(&self);
 	return (self.error);
 }

@@ -2,10 +2,10 @@ CFLAGS	= -Wall -Wextra -Werror
 CC		= gcc
 RM		= rm -f
 RUN		= ./${NAME}
-RFLAGS	= -c 5
+RFLAGS	= -C
 RUNWF	= ${RUN} ${RFLAGS}
 
-NAME	= ft_tail
+NAME	= ft_hexdump
 
 SRCDIR	= srcs
 INCDIR	= includes
@@ -17,12 +17,11 @@ SRCS	= ${SRCDIR}/ft_putchar.c \
 	  		${SRCDIR}/ft_display_file.c \
 	  		${SRCDIR}/ft_stdin.c \
 	  		${SRCDIR}/ft_atoi.c \
-	  		valid.c \
 	  		main.c
 OBJS	= ${SRCS:.c=.o}
 
 FILE1	= ${TESTDIR}/file1.txt
-FILE2	= ${TESTDIR}/file2.txt
+FILE2	= main.c
 FILES	= ${FILE1} ${FILE2}
 
 all:		${NAME}
@@ -43,56 +42,38 @@ re: 		fclean all
 
 files:		
 			@echo "Hello World from file1!" > ${FILE1}
-			@echo "Hello World from file2!" > ${FILE2}
 
 test_err:	${NAME} files
 			@echo "Should handle errors for each file.."
 			@echo "---"
 			-@${RUNWF} nofile1.txt ${FILES} nofile2.txt
 			@echo "-"
-			-@tail ${RFLAGS} nofile1.txt ${FILES} nofile2.txt
-			@echo "\n"
-			@echo "Should handle invalid number of bytes.."
-			@echo "---"
-			-@${RUN} -c d
-			@echo "-"
-			-@tail -c d
-			@echo "---"
-			-@${RUN} -c d nofile1.txt
-			@echo "-"
-			-@tail -c d nofile1.txt
-			@echo "\n"
+			-@hexdump ${RFLAGS} nofile1.txt ${FILES} nofile2.txt
 
 test_diff:	${NAME} files
-			@echo "Diffs should be empty.."
+			@echo "---"
+			@echo " No option - Diffs should be empty.."
+			@echo "---"
+			@echo "Single file"
+			@echo "-"
+			@hexdump ${FILE1} > a
+			@${RUN} ${FILE1} > b
+			-@diff a b > ${TESTDIR}/test_single.txt
+			@rm a b
+			@cat ${TESTDIR}/test_single.txt
+			
+t_backup:
+			@echo "\n"
 			@echo "---"
 			@echo "Multiple files"
 			@echo "-"
-			@tail ${RFLAGS} ${FILES} > a
+			@hexdump ${RFLAGS} ${FILES} > a
 			@${RUNWF} ${FILES} > b
 			-@diff a b > ${TESTDIR}/test_multiple.txt
 			@rm a b
 			@cat ${TESTDIR}/test_multiple.txt
-			@echo "---"
-			@echo "Single file"
-			@echo "-"
-			@tail ${RFLAGS} ${FILE1} > a
-			@${RUNWF} ${FILE1} > b
-			-@diff a b > ${TESTDIR}/test_single.txt
-			@rm a b
-			@cat ${TESTDIR}/test_single.txt
-			@echo "\n"
+			
 
-test:		${NAME} files
-			@echo "Should display tail of ${FILE1}.."
-			@echo "---"
-			@${RUNWF} ${FILE1}
-			@echo "\n"
-			@echo "Should display tail of ${FILE1} and ${FILE2}.."
-			@echo "---"
-			@${RUNWF} ${FILES}
-			@echo "\n"
-		
-tests:		test test_diff test_err
+tests:		test_diff test_err
 
-.PHONY : 	re fclean clean all file test
+.PHONY : 	re fclean clean all file

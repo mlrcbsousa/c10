@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 22:56:38 by manuel            #+#    #+#             */
-/*   Updated: 2021/01/30 01:31:39 by manuel           ###   ########.fr       */
+/*   Updated: 2021/01/30 04:28:25 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_display_file(t_app *self, char *filepath)
 			break ;
 		}
 		buf[size] = 0;
-		tail(self, buf);
+		hexdump(self, buf);
 	}
 	if (close(fd) == -1)
 		put_errno(self, filepath);
