@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 00:06:04 by manuel            #+#    #+#             */
-/*   Updated: 2021/01/30 01:24:42 by manuel           ###   ########.fr       */
+/*   Updated: 2021/01/30 02:28:01 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	tail(t_app *self, char *buf)
 	if (!self->single)
 	{
 		ft_putstr("==> ");
-		ft_putstr(basename(*(self->paths)));
+		ft_putstr(*(self->paths));
 		ft_putstr(" <==\n");
 	}
 	ft_putstr(buf - self->nbytes - 1);

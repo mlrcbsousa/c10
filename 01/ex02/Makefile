@@ -9,6 +9,7 @@ NAME	= ft_tail
 
 SRCDIR	= srcs
 INCDIR	= includes
+TESTDIR	= tests
 
 SRCS	= ${SRCDIR}/ft_putchar.c \
 	  		${SRCDIR}/ft_putstr.c \
@@ -20,8 +21,8 @@ SRCS	= ${SRCDIR}/ft_putchar.c \
 	  		main.c
 OBJS	= ${SRCS:.c=.o}
 
-FILE1	= file1.txt
-FILE2	= file2.txt
+FILE1	= ${TESTDIR}/file1.txt
+FILE2	= ${TESTDIR}/file2.txt
 FILES	= ${FILE1} ${FILE2}
 
 all:		${NAME}
@@ -69,17 +70,17 @@ test_diff:	${NAME} files
 			@echo "-"
 			@tail ${RFLAGS} ${FILES} > a
 			@${RUNWF} ${FILES} > b
-			-@diff a b > test_multiple.txt
+			-@diff a b > ${TESTDIR}/test_multiple.txt
 			@rm a b
-			@cat test_multiple.txt
+			@cat ${TESTDIR}/test_multiple.txt
 			@echo "---"
 			@echo "Single file"
 			@echo "-"
 			@tail ${RFLAGS} ${FILE1} > a
 			@${RUNWF} ${FILE1} > b
-			-@diff a b > test_single.txt
+			-@diff a b > ${TESTDIR}/test_single.txt
 			@rm a b
-			@cat test_single.txt
+			@cat ${TESTDIR}/test_single.txt
 			@echo "\n"
 
 test:		${NAME} files
