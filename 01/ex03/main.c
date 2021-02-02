@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 00:06:04 by manuel            #+#    #+#             */
-/*   Updated: 2021/02/02 21:04:01 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/02 21:41:05 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,27 @@ void	ft_foreach(t_app *self)
 		self->paths++;
 	}
 }
+
 #include <stdio.h>
+
 void	hexdump(t_app *self, char *buf)
 {
-	printf("%d\n", self->cflag);
+	int	counter;
+
 	if (self->cflag)
 		ft_putstr(buf);
 	else
-		ft_putstr(buf);
+	{
+		counter = 0;
+		while (*buf)
+		{
+			// print length in hex
+			// print hex
+			ft_putchar('\n');
+			buf += 16;
+		}
+		//ft_putstr(buf);
+	}
 }
 
 t_bool	is_c_flag(char *flag)
