@@ -61,7 +61,13 @@ test_diff:	${NAME} files
 			-@diff a b > ${TESTDIR}/test_single.txt
 			@rm a b
 			@cat ${TESTDIR}/test_single.txt
-			
+			@echo "-"
+			@hexdump ${RFLAGS} ${FILE1} > a
+			@${RUNWF} ${FILE1} > b
+			-@diff a b > ${TESTDIR}/test_single_cflag.txt
+			@rm a b
+			@cat ${TESTDIR}/test_single_cflag.txt
+
 t_backup:
 			@echo "\n"
 			@echo "---"
