@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 02:14:34 by manuel            #+#    #+#             */
-/*   Updated: 2021/02/03 02:14:36 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/03 23:30:51 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,77 @@ void	put_hex(int digits, int nbr)
 	dec_to_hex(nbr);
 }
 
+int		is_printable(char c)
+{
+	if (' ' <= c && c <= '~')
+		return (1);
+	return (0);
+}
+
+void	put_printables(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (i < 16 && *str)
+	{
+		if (is_printable(*str))
+			ft_putchar(*str);
+		else
+			ft_putchar('.');
+		str++;
+		i++;
+	}
+}
+
 void	hexdump(t_app *self, char *buf)
 {
 	int	counter;
 	int	aux;
 
 	if (self->cflag)
-		ft_putstr(buf);
+	{
+		counter = 0;
+		while (*buf)
+		{
+			if (counter % 16 == 0)
+				put_hex(8, counter);
+			if (counter % 8 == 0)
+				ft_putstr("  ");
+			else
+				ft_putchar(' ');
+			put_hex(2, *buf);
+			if (counter % 16 == 15)
+			{
+				ft_putstr("  ");
+				ft_putchar('|');
+				put_printables(buf - 15);
+				ft_putchar('|');
+				ft_putchar('\n');
+			}
+			buf++;
+			counter++;
+		}
+		if (counter % 16 != 15)
+		{
+			aux = counter;
+			while (aux % 16 < 15)
+			{
+				if (aux++ % 8 == 0)
+					ft_putstr("  ");
+				else
+					ft_putchar(' ');
+				ft_putstr("  ");
+			}
+			ft_putstr("     ");
+			ft_putchar('|');
+			put_printables(buf - counter % 16);
+			ft_putchar('|');
+			ft_putchar('\n');
+		}
+		put_hex(8, counter);
+		ft_putchar('\n');
+	}
 	else
 	{
 		counter = 0;
