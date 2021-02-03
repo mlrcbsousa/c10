@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 22:37:45 by manuel            #+#    #+#             */
-/*   Updated: 2021/02/03 00:44:42 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/03 02:00:04 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_putchar(char c);
 void	ft_putstr(char *str);
 void	ft_puterr(char *err);
 void	ft_display_file(t_app *self, char *filepath);
-void	ft_stdin(void);
+void	ft_stdin(t_app *self);
 long	ft_recursive_power(int nb, int power);
 
 t_bool	is_c_flag(char *flag);

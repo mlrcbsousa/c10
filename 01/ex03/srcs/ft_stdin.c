@@ -6,16 +6,20 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 03:20:25 by manuel            #+#    #+#             */
-/*   Updated: 2021/01/29 04:07:17 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/03 02:24:05 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 
-void	ft_stdin(void)
+void	ft_stdin(t_app *self)
 {
-	char	c;
+	int		size;
+	char	buf[BUF_SIZE + 1];
 
-	while (read(STDIN, &c, 1))
-		;
+	while ((size = read(STDIN, buf, BUF_SIZE)))
+	{
+		buf[size] = 0;
+		hexdump(self, buf);
+	}
 }
