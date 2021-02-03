@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_recursive_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/29 23:40:43 by manuel            #+#    #+#             */
-/*   Updated: 2021/01/29 23:41:28 by manuel           ###   ########.fr       */
+/*   Created: 2021/02/03 00:35:16 by manuel            #+#    #+#             */
+/*   Updated: 2021/02/03 00:43:28 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(char *str)
+long	ft_recursive_power(int nb, int power)
 {
-	int	nbr;
-
-	nbr = 0;
-	while (*str)
-		nbr = nbr * 10 + *str++ - '0';
-	return (nbr);
+	if (power < 0)
+		return (0);
+	if (power == 0)
+		return (1);
+	return ((long)nb * ft_recursive_power(nb, power - 1));
 }

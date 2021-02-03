@@ -1,7 +1,6 @@
-1,3c1,2
+1,3c1
 < 00000000  48 65 6c 6c 6f 20 57 6f  72 6c 64 20 66 72 6f 6d  |Hello World from|
 < 00000010  20 66 69 6c 65 31 21 0a                           | file1!.|
 < 00000018
 ---
 > Hello World from file1!
-> 1

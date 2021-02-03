@@ -16,7 +16,7 @@ SRCS	= ${SRCDIR}/ft_putchar.c \
 	  		${SRCDIR}/ft_puterr.c \
 	  		${SRCDIR}/ft_display_file.c \
 	  		${SRCDIR}/ft_stdin.c \
-	  		${SRCDIR}/ft_atoi.c \
+	  		${SRCDIR}/ft_recursive_power.c \
 	  		main.c
 OBJS	= ${SRCS:.c=.o}
 
