@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 02:14:34 by manuel            #+#    #+#             */
-/*   Updated: 2021/02/04 02:37:40 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/04 23:40:07 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	hexdump(t_app *self, char *buf)
 			put_hex(self->count_d, self->count);
 		self->body(buf++, self->count++);
 	}
-	if (!*(self->paths + 1))
+	if (!self->nofile && !*(self->paths + 1))
 	{
 		if (self->count % 16 != 15)
 			self->fill(buf, self->count);

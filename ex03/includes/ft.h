@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 22:37:45 by manuel            #+#    #+#             */
-/*   Updated: 2021/02/04 02:35:28 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/04 23:37:31 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ struct	s_app
 	int		count;
 	int		count_d;
 	t_bool	cflag;
+	t_bool	nofile;
 	t_bool	error;
 	void	(*body)(char *, int);
 	void	(*fill)(char *, int);
