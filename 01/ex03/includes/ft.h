@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 22:37:45 by manuel            #+#    #+#             */
-/*   Updated: 2021/02/03 02:00:04 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/04 01:32:45 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ struct	s_app
 {
 	char	*name;
 	char	**paths;
+	int		count_d;
 	t_bool	cflag;
 	t_bool	error;
+	void	(*body)(char *, int);
+	void	(*fill)(char *, int);
 };
 
 typedef struct s_app	t_app;
@@ -50,5 +53,12 @@ long	ft_recursive_power(int nb, int power);
 
 t_bool	is_c_flag(char *flag);
 void	hexdump(t_app *self, char *buf);
+void	put_printables(char *str);
+void	put_hex(int digits, int nbr);
+
+void	body_(char *buf, int counter);
+void	body_c(char *buf, int counter);
+void	fill_(char *buf, int counter);
+void	fill_c(char *buf, int counter);
 
 #endif
