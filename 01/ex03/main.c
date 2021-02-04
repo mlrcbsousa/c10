@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 00:06:04 by manuel            #+#    #+#             */
-/*   Updated: 2021/02/04 01:17:53 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/04 02:10:18 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,31 @@ t_bool	is_c_flag(char *flag)
 	return (*flag && *flag++ == '-' && *flag == 'C');
 }
 
-int		main(int argc, char **argv)
+void	init(t_app *self, char *name)
 {
-	t_app	self;
-
-	self = (t_app) { 
-		.name = *argv++, 
-		.error = false, 
+	*self = (t_app) {
+		.name = name,
+		.error = false,
 		.cflag = false,
 		.body = body_,
 		.fill = fill_,
 		.count_d = 7
 	};
+}
+
+int		main(int argc, char **argv)
+{
+	t_app	self;
+
+	init(&self, *argv++);
 	if (argc > 1 && is_c_flag(*argv))
 	{
-		self = (t_app) { .cflag = true, .body = body_c, .fill = fill_c, .count_d = 8 }; 
+		self = (t_app) {
+			.cflag = true,
+			.body = body_c,
+			.fill = fill_c,
+			.count_d = 8
+		};
 		argv++;
 	}
 	if (argc == 1 || (argc == 2 && self.cflag))

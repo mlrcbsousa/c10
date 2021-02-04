@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 00:33:58 by manuel            #+#    #+#             */
-/*   Updated: 2021/02/04 00:34:12 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/04 02:17:21 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ void	put_hex(int digits, int nbr)
 		ft_putchar('0');
 	dec_to_hex(nbr);
 }
-

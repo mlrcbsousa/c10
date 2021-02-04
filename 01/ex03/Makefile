@@ -20,11 +20,12 @@ SRCS	= ${SRCDIR}/ft_putchar.c \
 	  		${SRCDIR}/put_hex.c \
 	  		${SRCDIR}/put_printables.c \
 	  		hexdump.c \
+	  		builders.c \
 	  		main.c
 OBJS	= ${SRCS:.c=.o}
 
 FILE1	= ${TESTDIR}/file1.txt
-FILE2	= main.c
+FILE2	= ${TESTDIR}/file2.txt
 FILES	= ${FILE1} ${FILE2}
 
 all:		${NAME}
@@ -45,6 +46,7 @@ re: 		fclean all
 
 files:		
 			@echo "Hello World from file1!" > ${FILE1}
+			@echo "Hello World from file2!" > ${FILE2}
 
 test_err:	${NAME} files
 			@echo "Should handle errors for each file.."
@@ -55,7 +57,7 @@ test_err:	${NAME} files
 
 test_diff:	${NAME} files
 			@echo "---"
-			@echo " No option - Diffs should be empty.."
+			@echo "Diffs should be empty.."
 			@echo "---"
 			@echo "Single file"
 			@echo "-"
@@ -70,18 +72,21 @@ test_diff:	${NAME} files
 			-@diff a b > ${TESTDIR}/test_single_cflag.txt
 			@rm a b
 			@cat ${TESTDIR}/test_single_cflag.txt
-
-t_backup:
 			@echo "\n"
 			@echo "---"
 			@echo "Multiple files"
 			@echo "-"
-			@hexdump ${RFLAGS} ${FILES} > a
-			@${RUNWF} ${FILES} > b
+			@hexdump ${FILES} > a
+			@${RUN} ${FILES} > b
 			-@diff a b > ${TESTDIR}/test_multiple.txt
 			@rm a b
 			@cat ${TESTDIR}/test_multiple.txt
-			
+			@echo "-"
+			@hexdump ${RFLAGS} ${FILES} > a
+			@${RUNWF} ${FILES} > b
+			-@diff a b > ${TESTDIR}/test_multiple_cflag.txt
+			@rm a b
+			@cat ${TESTDIR}/test_multiple_cflag.txt
 
 tests:		test_diff test_err
 
