@@ -6,7 +6,7 @@
 /*   By: manuel <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 22:37:45 by manuel            #+#    #+#             */
-/*   Updated: 2021/02/04 01:32:45 by manuel           ###   ########.fr       */
+/*   Updated: 2021/02/04 02:35:28 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ struct	s_app
 {
 	char	*name;
 	char	**paths;
+	int		count;
 	int		count_d;
 	t_bool	cflag;
 	t_bool	error;
